@@ -1,0 +1,59 @@
+<?php
+/*
+* This is a sample of the main configuration file. Place all required configuration settings
+* here with dummy values. When publishing the site copy this file to config.php and
+* place the real configuration settings there.
+*
+* The config.php file is listed in .gitignore so you can put sensitive configuration values there
+* without them being stored in git.
+*/
+
+/*
+* ------------- common vars to be used on file --------------------
+* You can add as many vars here as you wish
+*/
+
+$fs_root = ""; #point to the project root folder without the trailing slash
+$app_env = "development"; #possible options 'development','production','staging'
+
+$vendor_path = $fs_root.'/vendor/'; #path for composer modules install folder
+
+
+$log_level = "DEBUG";     #set general log level
+if ($app_env == 'production') {
+    $log_level = "INFO"; #default log level for production environments, other options: ERROR, WARNING
+}
+
+/*
+* ---------------- the configuration array ----------
+* make sure it is called $c
+*/
+$c = array(
+//-------- common application settings -------------------
+//- path settings
+  "install_path"    => $fs_root,
+
+//- application settings
+  "app_id"          => "unique-id-for-app",
+  "app_name"        => "name of app",
+  "app_author"      => "application-autor",
+
+//--------     logging            --------------------------
+    "logfile_path"    => __DIR__ . '/../logs/application.log',   //path for application logs
+    "logfile_level"  => $log_level,
+
+//--------     wowza API settings --------------------------
+    "wowza_api_user"         => "api username",
+    "wowza_api_pass"         => "api password",
+    "wowza_default_server"   => "_defaultServer_",
+    "wowza_default_vhost"    => "_defaultVHost_",
+    "wowza_api_url"           => "http://my.wowza.url:8087",
+    "wowza_apps"             => ["app1","app2"], //list of apps to obtain statistics
+
+//--------     file buffer settings  --------------------------
+    "file_buffer_path"             => "path/to/file.json", //path to file where buffer data is written
+    "file_buffer_timeout"     => 30, //in seconds
+
+//-------- additional settings -------------------
+
+);
