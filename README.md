@@ -45,7 +45,7 @@ For a complete example you can check the sample configuration file in **app/conf
 To run the tool call the **collect_wowza_stats.php** script in the *utils* folder. To show a list of all the information acquired by this tool, on the project root run:
 
 ```
-php utils/collect_wowza_stats
+php utils/collect_wowza_stats.php
 
 ```
 Which outputs something like:
@@ -70,7 +70,7 @@ connections.live.rtp:0
 
 To present the value for a specific statistic, like for example the total connections, on the project root run:
 ```
-php utils/collect_wowza_stats connections.total
+php utils/collect_wowza_stats.php connections.total
 
 ```
 Which outputs:
