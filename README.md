@@ -8,7 +8,7 @@ To prevent overloading the Wowza server with requests, the information is stored
 To install this collection in your project clone the project into your computer and run composer install.
 
 ```
-git clone https://github.com/fccn/wowza-api-data-collector
+git clone https://github.com/fccn/wowza-api-data-collector.git
 cd wowza-api-snmp-collector
 composer install
 
