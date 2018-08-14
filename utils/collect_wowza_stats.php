@@ -20,7 +20,11 @@ if (!defined('CONFIG_FILE')) {
     define("CONFIG_FILE", __DIR__ . "/../app/config.php");
 }
 
-$tmp_file_path = SiteConfig::getInstance()->get('stats_file');
+$tmp_file_path = SiteConfig::getInstance()->get('file_buffer_path');
+if (Utils::can_update($tmp_file_path)){
+  Utils::update_stats_file($tmp_file_path);
+}
+/*
 if (file_exists($tmp_file_path)) {
     #check when last modified
     $time_limit = filemtime($tmp_file_path)+SiteConfig::getInstance()->get('stats_file_timeout');
@@ -30,7 +34,7 @@ if (file_exists($tmp_file_path)) {
     }
 } else {
     Utils::update_stats_file();
-}
+}*/
 
 if (!file_exists($tmp_file_path)) {
     FileLogger::getInstance()->error("The statistics file $tmp_file_path was not found, cannot do anything");

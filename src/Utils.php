@@ -25,24 +25,26 @@
    public static function can_update($file_path){
      if (file_exists($file_path)) {
          #check when last modified
-         $time_limit = filemtime($file_path)+SiteConfig::getInstance()->get('file_timeout');
+         $time_limit = filemtime($file_path)+SiteConfig::getInstance()->get('file_buffer_timeout');
          clearstatcache();
          if (time() > $time_limit) {
-             Utils::update_stats_file();
+             return true;
          }
      } else {
-         Utils::update_stats_file();
+         return true;
      }
+     return false;
    }
 
    /**
-   * Updates the statistical data file
+   * Updates the statistical data buffer file
+   * @param string $file_path the path to the buffer file, defaults to empty
    */
-   public static function update_stats_file()
+   public static function update_stats_file($file_path = '')
    {
        FileLogger::getInstance()->debug("Updating stats file");
        $stats_data = array();
-       $api_srv = SiteConfig::getInstance()->get('wowza_server');
+       $api_srv = SiteConfig::getInstance()->get('wowza_api_url');
        //get machine monitoring data for total num of connections and heap info
        $mmon_data = WowzaApi::getInstance()->getMachineMonitoring($api_srv);
        $stats_data["cpu"] = array(
@@ -77,8 +79,11 @@
        );
        }
 
+       if(empty($file_path)){
+         $file_path = SiteConfig::getInstance()->get('file_buffer_path');
+       }
        #write to file
-       $dump_file = fopen(SiteConfig::getInstance()->get('stats_file'), "w");
+       $dump_file = fopen($file_path, "w");
        fwrite($dump_file, json_encode($stats_data));
        fclose($dump_file);
    }
