@@ -40,7 +40,7 @@
    * Updates the statistical data buffer file
    * @param string $file_path the path to the buffer file, defaults to empty
    */
-   public static function update_stats_file($file_path = '')
+   public static function update_stats_file($file_path)
    {
        FileLogger::getInstance()->debug("Updating stats file");
        $stats_data = array();
@@ -80,7 +80,9 @@
        }
 
        if(empty($file_path)){
-         $file_path = SiteConfig::getInstance()->get('file_buffer_path');
+         //fallback to default file in tmp/wowza_stats.json
+         FileLogger::getInstance()->warn("update_stats_file: no file path was provided, generating default tmp from settings");
+         $file_path = __DIR__."/../tmp/".SiteConfig::getInstance()->get('file_buffer_name');
        }
        #write to file
        $dump_file = fopen($file_path, "w");

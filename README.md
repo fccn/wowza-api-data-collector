@@ -32,7 +32,7 @@ $c = array(
         "wowza_api_url"           => "http://my.wowza.url:8087",  //url to the wowza api with port number
         "wowza_apps"             => ["app1","app2"], //list of application instances to obtain statistics from
     //--------     file buffer settings  --------------------------
-        "file_buffer_path"          => "path/to/file.json", //path to file where statistic data is stored
+        "file_buffer_name"          => "file.json", //name of file where buffer data is written
         "file_buffer_timeout"       => 30, //the time to refresh the file, in seconds
      ...
 );

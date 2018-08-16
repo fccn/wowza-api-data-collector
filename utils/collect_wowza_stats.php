@@ -20,7 +20,7 @@ if (!defined('CONFIG_FILE')) {
     define("CONFIG_FILE", __DIR__ . "/../app/config.php");
 }
 
-$tmp_file_path = SiteConfig::getInstance()->get('file_buffer_path');
+$tmp_file_path = __DIR__."/../tmp/".SiteConfig::getInstance()->get('file_buffer_name');
 if (Utils::can_update($tmp_file_path)){
   Utils::update_stats_file($tmp_file_path);
 }

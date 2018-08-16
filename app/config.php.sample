@@ -13,7 +13,7 @@
 * You can add as many vars here as you wish
 */
 
-$fs_root = ""; #point to the project root folder without the trailing slash
+$fs_root = ""; #point to the project root folder without the trailing slash (i.e. /app/wowza_api_data_collector)
 $app_env = "development"; #possible options 'development','production','staging'
 
 $vendor_path = $fs_root.'/vendor/'; #path for composer modules install folder
@@ -51,7 +51,7 @@ $c = array(
     "wowza_apps"             => ["app1","app2"], //list of apps to obtain statistics
 
 //--------     file buffer settings  --------------------------
-    "file_buffer_path"             => "path/to/file.json", //path to file where buffer data is written
+    "file_buffer_name"             => "wowza_stats.json", //name of file where buffer data is written in tmp folder
     "file_buffer_timeout"     => 30, //in seconds
 
 //-------- additional settings -------------------
