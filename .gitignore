@@ -6,3 +6,4 @@ tests/_output/*
 tests/_output/logs/**
 logs/*.log
 tmp/*
+.docker/deploy.env
